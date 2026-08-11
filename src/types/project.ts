@@ -1,3 +1,14 @@
+export type ProjectFeedback = {
+  author?: string;
+  role?: string;
+  comment: string;
+};
+
+export type ProjectDetails = {
+  overview: string;
+  highlights: string[];
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -7,6 +18,8 @@ export type Project = {
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
-  hasFeedback?: boolean;
+  feedback?: ProjectFeedback[];
+  feedbackPending?: boolean;
   status?: string;
+  details: ProjectDetails;
 };
