@@ -112,7 +112,7 @@ export function ProjectsSection({ locale = "pt" }: ProjectsSectionProps) {
                   <div className="mt-8 flex flex-wrap gap-3">
                     {project.liveUrl ? (
                       <Button asChild size="sm">
-                        <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                           {text.viewProject}
                           <ExternalLink aria-hidden="true" size={16} />
                         </a>
