@@ -67,6 +67,7 @@ function TechnologyIcon({ name, icon }: { name: string; icon?: string }) {
         height={22}
         aria-hidden="true"
         className="size-[22px] object-contain"
+        unoptimized
       />
     </span>
   );
