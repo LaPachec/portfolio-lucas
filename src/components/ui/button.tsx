@@ -9,11 +9,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border-[var(--charcoal-noir)] bg-[var(--charcoal-noir)] text-[var(--cloud-veil)] hover:bg-transparent hover:text-[var(--charcoal-noir)]",
+          "border-[var(--charcoal-noir)] bg-[var(--charcoal-noir)] [color:var(--cloud-veil)] visited:[color:var(--cloud-veil)] hover:bg-transparent hover:[color:var(--charcoal-noir)]",
         outline:
-          "border-[var(--moonlit-silver)] bg-transparent text-[var(--charcoal-noir)] hover:border-[var(--charcoal-noir)] hover:bg-[var(--charcoal-noir)] hover:text-[var(--cloud-veil)]",
+          "border-[var(--moonlit-silver)] bg-transparent [color:var(--charcoal-noir)] visited:[color:var(--charcoal-noir)] hover:border-[var(--charcoal-noir)] hover:bg-[var(--charcoal-noir)] hover:[color:var(--cloud-veil)]",
         ghost:
-          "border-transparent bg-transparent text-[var(--ironclad-grey)] hover:text-[var(--charcoal-noir)]",
+          "border-transparent bg-transparent [color:var(--ironclad-grey)] visited:[color:var(--ironclad-grey)] hover:[color:var(--charcoal-noir)]",
       },
       size: {
         default: "h-11 px-5",
@@ -49,11 +49,7 @@ function Button({
   }
 
   return (
-    <button
-      data-slot="button"
-      className={classes}
-      {...props}
-    >
+    <button data-slot="button" className={classes} {...props}>
       {children}
     </button>
   );
