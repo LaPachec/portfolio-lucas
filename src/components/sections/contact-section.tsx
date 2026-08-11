@@ -6,6 +6,12 @@ import { motion, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/shared/section-heading";
 
+type Locale = "pt" | "en";
+
+type ContactSectionProps = {
+  locale?: Locale;
+};
+
 const contacts = [
   {
     label: "GitHub",
@@ -19,8 +25,20 @@ const contacts = [
   },
 ];
 
-export function ContactSection() {
+export function ContactSection({ locale = "pt" }: ContactSectionProps) {
   const reduceMotion = useReducedMotion();
+  const text =
+    locale === "pt"
+      ? {
+          eyebrow: "Contato",
+          title: "Vamos transformar uma ideia em interface real.",
+          description: "Entre em contato para conversar sobre projetos, oportunidades ou colaboração técnica.",
+        }
+      : {
+          eyebrow: "Contact",
+          title: "Let’s turn an idea into a real interface.",
+          description: "Get in touch to talk about projects, opportunities or technical collaboration.",
+        };
 
   return (
     <section
@@ -38,9 +56,9 @@ export function ContactSection() {
           <SectionHeading
             id="contato-title"
             inverted
-            eyebrow="Contato"
-            title="Vamos transformar uma ideia em interface real."
-            description="Entre em contato para conversar sobre projetos, oportunidades ou colaboração técnica."
+            eyebrow={text.eyebrow}
+            title={text.title}
+            description={text.description}
           />
         </motion.div>
 
