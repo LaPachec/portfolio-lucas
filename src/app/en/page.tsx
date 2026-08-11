@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function EnglishHome() {
   return (
-    <>
+    <div lang="en">
       <Navbar locale="en" />
       <main>
         <HeroSection locale="en" />
@@ -36,6 +36,6 @@ export default function EnglishHome() {
         <ContactSection locale="en" />
       </main>
       <Footer locale="en" />
-    </>
+    </div>
   );
 }
