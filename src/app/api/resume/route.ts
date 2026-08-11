@@ -3,35 +3,16 @@ import path from "node:path";
 
 const resumeConfig = {
   pt: {
-    downloadName: "curriculo-lucas-araujo.pdf",
-    candidates: [
-      "curriculo-lucas-araujo.pdf",
-      "Cv Lucas BAsico P&B.pdf",
-      "CV Lucas Basico P&B.pdf",
-      "Cv Lucas Básico P&B.pdf",
-    ],
-    hints: ["curriculo", "currículo", "portugues", "português", "basico", "básico"],
+    downloadName: "Lucas_Pacheco_Curriculo.pdf",
+    candidates: ["Lucas_Pacheco_Curriculo.pdf"],
   },
   en: {
-    downloadName: "resume-lucas-araujo.pdf",
-    candidates: [
-      "resume-lucas-araujo.pdf",
-      "cv-lucas-araujo-en.pdf",
-      "CV Lucas English.pdf",
-      "Cv Lucas English.pdf",
-    ],
-    hints: ["resume", "english", "ingles", "inglês", "-en"],
+    downloadName: "Lucas_Pacheco_Resume.pdf",
+    candidates: ["Lucas_Pacheco_Resume.pdf"],
   },
 } as const;
 
 type ResumeLocale = keyof typeof resumeConfig;
-
-function normalize(value: string) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-}
 
 async function findResumeFile(locale: ResumeLocale) {
   const publicDir = path.join(process.cwd(), "public");
@@ -48,17 +29,7 @@ async function findResumeFile(locale: ResumeLocale) {
     }
   }
 
-  const files = await fs.readdir(publicDir);
-  const pdfFiles = files.filter((file) => file.toLowerCase().endsWith(".pdf"));
-  const hints = config.hints.map(normalize);
-
-  return (
-    pdfFiles
-      .map((file) => ({ file, normalized: normalize(file) }))
-      .find(({ normalized }) => hints.some((hint) => normalized.includes(hint)))
-      ?.file
-      ?.replace(/^/, `${publicDir}${path.sep}`) ?? null
-  );
+  return null;
 }
 
 export async function GET(request: Request) {
