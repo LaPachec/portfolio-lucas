@@ -9,15 +9,38 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { ProjectFeedback } from "@/types/project";
 
+type Locale = "pt" | "en";
+
 type FeedbackDialogProps = {
   projectTitle: string;
   feedback: ProjectFeedback[];
   pending?: boolean;
+  locale?: Locale;
 };
 
-export function FeedbackDialog({ projectTitle, feedback, pending = false }: FeedbackDialogProps) {
+export function FeedbackDialog({ projectTitle, feedback, pending = false, locale = "pt" }: FeedbackDialogProps) {
   const [open, setOpen] = React.useState(false);
   const reduceMotion = useReducedMotion();
+  const text =
+    locale === "pt"
+      ? {
+          trigger: "Ver feedback",
+          eyebrow: "Feedback de cliente",
+          description: "Comentários recebidos sobre a experiência de desenvolvimento e a entrega do projeto.",
+          close: "Fechar feedback",
+          client: "Cliente",
+          pending:
+            "O componente de feedback já está preparado. Os comentários originais do cliente ainda precisam ser cadastrados para evitar publicar depoimentos não validados.",
+        }
+      : {
+          trigger: "View feedback",
+          eyebrow: "Client feedback",
+          description: "Comments received about the development experience and project delivery.",
+          close: "Close feedback",
+          client: "Client",
+          pending:
+            "The feedback component is ready. Original client comments still need to be added before publishing any testimonial.",
+        };
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -28,7 +51,7 @@ export function FeedbackDialog({ projectTitle, feedback, pending = false }: Feed
         )}
       >
         <MessageSquareQuote aria-hidden="true" size={16} />
-        Ver feedback
+        {text.trigger}
       </Dialog.Trigger>
 
       <AnimatePresence>
@@ -59,19 +82,19 @@ export function FeedbackDialog({ projectTitle, feedback, pending = false }: Feed
               >
                 <div className="pr-12">
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--urban-fog)]">
-                    Feedback de cliente
+                    {text.eyebrow}
                   </p>
                   <Dialog.Title className="mt-3 text-3xl font-semibold tracking-tight">
                     {projectTitle}
                   </Dialog.Title>
                   <Dialog.Description className="mt-4 leading-7 text-[var(--ironclad-grey)]">
-                    Comentários recebidos sobre a experiência de desenvolvimento e a entrega do projeto.
+                    {text.description}
                   </Dialog.Description>
                 </div>
 
                 <Dialog.Close
                   className="absolute right-5 top-5 inline-flex size-10 cursor-pointer items-center justify-center rounded-full border border-[var(--moonlit-silver)] transition-colors hover:border-[var(--charcoal-noir)] hover:bg-[var(--charcoal-noir)] hover:text-[var(--cloud-veil)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--charcoal-noir)]"
-                  aria-label="Fechar feedback"
+                  aria-label={text.close}
                 >
                   <X aria-hidden="true" size={18} />
                 </Dialog.Close>
@@ -80,7 +103,7 @@ export function FeedbackDialog({ projectTitle, feedback, pending = false }: Feed
                   {feedback.length > 0
                     ? feedback.map((item, index) => (
                         <motion.blockquote
-                          key={`${item.author ?? "cliente"}-${index}`}
+                          key={`${item.author ?? "client"}-${index}`}
                           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: reduceMotion ? 0 : 0.08 + index * 0.06 }}
@@ -89,7 +112,7 @@ export function FeedbackDialog({ projectTitle, feedback, pending = false }: Feed
                           <p className="leading-7 text-[var(--ironclad-grey)]">“{item.comment}”</p>
                           {item.author || item.role ? (
                             <footer className="mt-4 text-sm font-semibold text-[var(--charcoal-noir)]">
-                              {item.author ?? "Cliente"}
+                              {item.author ?? text.client}
                               {item.role ? ` · ${item.role}` : ""}
                             </footer>
                           ) : null}
@@ -104,7 +127,7 @@ export function FeedbackDialog({ projectTitle, feedback, pending = false }: Feed
                       transition={{ delay: reduceMotion ? 0 : 0.08 }}
                       className="border border-dashed border-[var(--moonlit-silver)] p-5 text-sm leading-7 text-[var(--ironclad-grey)]"
                     >
-                      O componente de feedback já está preparado. Os comentários originais do cliente ainda precisam ser cadastrados para evitar publicar depoimentos não validados.
+                      {text.pending}
                     </motion.div>
                   ) : null}
                 </div>
