@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { GitBranch, MoveRight } from "lucide-react";
+import Link from "next/link";
+import { FileText, GitBranch, MoveRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { Button } from "@/components/ui/button";
@@ -71,7 +72,7 @@ export function HeroSection() {
           Construo aplicações web modernas, conectando interfaces bem desenhadas,
           APIs, dados e regras de negócio com foco em clareza e manutenção.
         </motion.p>
-        <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Button asChild size="lg">
             <a href="#projetos">
               Ver projetos
@@ -83,6 +84,12 @@ export function HeroSection() {
               <GitBranch aria-hidden="true" size={18} />
               GitHub
             </a>
+          </Button>
+          <Button asChild size="lg" variant="ghost">
+            <Link href="/curriculo">
+              <FileText aria-hidden="true" size={18} />
+              Currículo
+            </Link>
           </Button>
         </motion.div>
       </motion.div>
