@@ -6,48 +6,98 @@ import { motion, useReducedMotion } from "motion/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SectionHeading } from "@/components/shared/section-heading";
 
-const technologyGroups = [
-  {
-    title: "Front-end",
-    items: [
-      { name: "React", icon: "react" },
-      { name: "Next.js", icon: "nextdotjs" },
-      { name: "Vite", icon: "vite" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "Tailwind CSS", icon: "tailwindcss" },
-      { name: "Ant Design", icon: "antdesign" },
-    ],
-  },
-  {
-    title: "Back-end",
-    items: [
-      { name: "Node.js", icon: "nodedotjs" },
-      { name: "Fastify", icon: "fastify" },
-      { name: "Express", icon: "express" },
-      { name: "Prisma", icon: "prisma" },
-      { name: "JWT" },
-    ],
-  },
-  {
-    title: "Banco de dados / Infraestrutura",
-    items: [
-      { name: "SQLite", icon: "sqlite" },
-      { name: "PostgreSQL", icon: "postgresql" },
-      { name: "Docker Compose", icon: "docker" },
-      { name: "Vercel", icon: "vercel" },
-    ],
-  },
-  {
-    title: "Ferramentas",
-    items: [
-      { name: "Git", icon: "git" },
-      { name: "GitHub", icon: "github" },
-      { name: "ESLint", icon: "eslint" },
-      { name: "Jest", icon: "jest" },
-      { name: "Supertest" },
-    ],
-  },
-];
+type Locale = "pt" | "en";
+
+type TechnologiesSectionProps = {
+  locale?: Locale;
+};
+
+const technologyGroups = {
+  pt: [
+    {
+      title: "Front-end",
+      items: [
+        { name: "React", icon: "react" },
+        { name: "Next.js", icon: "nextdotjs" },
+        { name: "Vite", icon: "vite" },
+        { name: "TypeScript", icon: "typescript" },
+        { name: "Tailwind CSS", icon: "tailwindcss" },
+        { name: "Ant Design", icon: "antdesign" },
+      ],
+    },
+    {
+      title: "Back-end",
+      items: [
+        { name: "Node.js", icon: "nodedotjs" },
+        { name: "Fastify", icon: "fastify" },
+        { name: "Express", icon: "express" },
+        { name: "Prisma", icon: "prisma" },
+        { name: "JWT" },
+      ],
+    },
+    {
+      title: "Banco de dados / Infraestrutura",
+      items: [
+        { name: "SQLite", icon: "sqlite" },
+        { name: "PostgreSQL", icon: "postgresql" },
+        { name: "Docker Compose", icon: "docker" },
+        { name: "Vercel", icon: "vercel" },
+      ],
+    },
+    {
+      title: "Ferramentas",
+      items: [
+        { name: "Git", icon: "git" },
+        { name: "GitHub", icon: "github" },
+        { name: "ESLint", icon: "eslint" },
+        { name: "Jest", icon: "jest" },
+        { name: "Supertest" },
+      ],
+    },
+  ],
+  en: [
+    {
+      title: "Front-end",
+      items: [
+        { name: "React", icon: "react" },
+        { name: "Next.js", icon: "nextdotjs" },
+        { name: "Vite", icon: "vite" },
+        { name: "TypeScript", icon: "typescript" },
+        { name: "Tailwind CSS", icon: "tailwindcss" },
+        { name: "Ant Design", icon: "antdesign" },
+      ],
+    },
+    {
+      title: "Back-end",
+      items: [
+        { name: "Node.js", icon: "nodedotjs" },
+        { name: "Fastify", icon: "fastify" },
+        { name: "Express", icon: "express" },
+        { name: "Prisma", icon: "prisma" },
+        { name: "JWT" },
+      ],
+    },
+    {
+      title: "Database / Infrastructure",
+      items: [
+        { name: "SQLite", icon: "sqlite" },
+        { name: "PostgreSQL", icon: "postgresql" },
+        { name: "Docker Compose", icon: "docker" },
+        { name: "Vercel", icon: "vercel" },
+      ],
+    },
+    {
+      title: "Tools",
+      items: [
+        { name: "Git", icon: "git" },
+        { name: "GitHub", icon: "github" },
+        { name: "ESLint", icon: "eslint" },
+        { name: "Jest", icon: "jest" },
+        { name: "Supertest" },
+      ],
+    },
+  ],
+};
 
 function TechnologyIcon({ name, icon }: { name: string; icon?: string }) {
   if (!icon) {
@@ -76,8 +126,23 @@ function TechnologyIcon({ name, icon }: { name: string; icon?: string }) {
   );
 }
 
-export function TechnologiesSection() {
+export function TechnologiesSection({ locale = "pt" }: TechnologiesSectionProps) {
   const reduceMotion = useReducedMotion();
+  const groups = technologyGroups[locale];
+  const heading =
+    locale === "pt"
+      ? {
+          eyebrow: "Tecnologias",
+          title: "Tecnologias usadas em projetos reais.",
+          description:
+            "Uma seleção enxuta das ferramentas identificadas nos projetos analisados, separando interface, servidor, dados e suporte ao desenvolvimento.",
+        }
+      : {
+          eyebrow: "Technologies",
+          title: "Technologies used in real projects.",
+          description:
+            "A focused selection of tools used across the projects, covering interfaces, server-side development, data and development workflows.",
+        };
 
   return (
     <section
@@ -94,14 +159,14 @@ export function TechnologiesSection() {
         >
           <SectionHeading
             id="tecnologias-title"
-            eyebrow="Tecnologias"
-            title="Tecnologias usadas em projetos reais."
-            description="Uma seleção enxuta das ferramentas identificadas nos projetos analisados, separando interface, servidor, dados e suporte ao desenvolvimento."
+            eyebrow={heading.eyebrow}
+            title={heading.title}
+            description={heading.description}
           />
         </motion.div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {technologyGroups.map((group, groupIndex) => (
+          {groups.map((group, groupIndex) => (
             <motion.div
               key={group.title}
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
