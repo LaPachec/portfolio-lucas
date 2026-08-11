@@ -26,11 +26,11 @@ export function ProjectsSection() {
         />
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.div
               key={project.slug}
-              initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.985 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.18 }}
               whileHover={
                 reduceMotion
@@ -41,7 +41,13 @@ export function ProjectsSection() {
                       boxShadow: "0 24px 60px rgba(43, 43, 43, 0.18)",
                     }
               }
-              transition={{ type: "spring", stiffness: 220, damping: 24, mass: 0.8 }}
+              transition={{
+                type: "spring",
+                stiffness: 220,
+                damping: 24,
+                mass: 0.8,
+                delay: reduceMotion ? 0 : index * 0.075,
+              }}
               className="overflow-hidden border border-[var(--moonlit-silver)] bg-[rgba(224,224,224,0.52)]"
             >
               <Card className="h-full overflow-hidden border-0 bg-transparent">
