@@ -115,7 +115,7 @@ export function ProjectDetailsDialog({ project, locale = "pt" }: ProjectDetailsD
                       <a
                         href={project.liveUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className={cn(buttonVariants({ size: "sm" }), "mt-7 inline-flex")}
                       >
                         {text.project}
