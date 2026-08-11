@@ -32,7 +32,6 @@ const technologyGroups = {
         { name: "Fastify", icon: "fastify" },
         { name: "Express", icon: "express" },
         { name: "Prisma", icon: "prisma" },
-        { name: "JWT" },
       ],
     },
     {
@@ -51,7 +50,6 @@ const technologyGroups = {
         { name: "GitHub", icon: "github" },
         { name: "ESLint", icon: "eslint" },
         { name: "Jest", icon: "jest" },
-        { name: "Supertest" },
       ],
     },
   ],
@@ -74,7 +72,6 @@ const technologyGroups = {
         { name: "Fastify", icon: "fastify" },
         { name: "Express", icon: "express" },
         { name: "Prisma", icon: "prisma" },
-        { name: "JWT" },
       ],
     },
     {
@@ -93,7 +90,6 @@ const technologyGroups = {
         { name: "GitHub", icon: "github" },
         { name: "ESLint", icon: "eslint" },
         { name: "Jest", icon: "jest" },
-        { name: "Supertest" },
       ],
     },
   ],
