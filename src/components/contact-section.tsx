@@ -1,14 +1,9 @@
-import { GitBranch, Link2, MessageCircle } from "lucide-react";
+import { GitBranch, Linkedin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/section-heading";
 
 const contacts = [
-  {
-    label: "WhatsApp",
-    href: "https://wa.me/",
-    icon: MessageCircle,
-  },
   {
     label: "GitHub",
     href: "https://github.com/LaPachec",
@@ -16,8 +11,8 @@ const contacts = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/",
-    icon: Link2,
+    href: "https://www.linkedin.com/in/lucas-araujo-3007b9354/",
+    icon: Linkedin,
   },
 ];
 
