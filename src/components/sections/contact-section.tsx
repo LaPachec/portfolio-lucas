@@ -1,4 +1,4 @@
-import { GitBranch, Link2 } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -7,12 +7,12 @@ const contacts = [
   {
     label: "GitHub",
     href: "https://github.com/LaPachec",
-    icon: GitBranch,
+    icon: Github,
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/lucas-araujo-3007b9354/",
-    icon: Link2,
+    icon: Linkedin,
   },
 ];
 
@@ -41,7 +41,7 @@ export function ContactSection() {
                 key={contact.label}
                 asChild
                 variant="outline"
-                className="border-[var(--urban-fog)] text-[var(--cloud-veil)] hover:border-[var(--cloud-veil)] hover:bg-[var(--cloud-veil)] hover:text-[var(--charcoal-noir)] focus-visible:outline-[var(--cloud-veil)]"
+                className="border-[var(--urban-fog)] !text-[var(--cloud-veil)] hover:border-[var(--cloud-veil)] hover:bg-[var(--cloud-veil)] hover:!text-[var(--charcoal-noir)] focus-visible:outline-[var(--cloud-veil)]"
               >
                 <a href={contact.href} target="_blank" rel="noreferrer">
                   <Icon aria-hidden="true" size={18} />
