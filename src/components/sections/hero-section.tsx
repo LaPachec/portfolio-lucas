@@ -1,11 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { FileText, GitBranch, MoveRight } from "lucide-react";
+import { Download, GitBranch, MoveRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { Button } from "@/components/ui/button";
+
+type Locale = "pt" | "en";
+
+type HeroSectionProps = {
+  locale?: Locale;
+};
+
+const copy = {
+  pt: {
+    eyebrow: "Portfólio",
+    role: "Desenvolvedor Full Stack",
+    description:
+      "Construo aplicações web modernas, conectando interfaces bem desenhadas, APIs, dados e regras de negócio com foco em clareza e manutenção.",
+    projects: "Ver projetos",
+    resume: "Baixar currículo",
+    resumeHref: "/curriculo-lucas-araujo.pdf",
+    alt: "Lucas Araújo, desenvolvedor Full Stack",
+  },
+  en: {
+    eyebrow: "Portfolio",
+    role: "Full Stack Developer",
+    description:
+      "I build modern web applications, connecting thoughtful interfaces, APIs, data and business rules with a focus on clarity and maintainability.",
+    projects: "View projects",
+    resume: "Download résumé",
+    resumeHref: "/resume-lucas-araujo.pdf",
+    alt: "Lucas Araújo, Full Stack Developer",
+  },
+};
 
 const containerVariants = {
   hidden: {},
@@ -31,8 +59,9 @@ const itemVariants = {
   },
 };
 
-export function HeroSection() {
+export function HeroSection({ locale = "pt" }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
+  const text = copy[locale];
 
   return (
     <section
@@ -46,36 +75,22 @@ export function HeroSection() {
         initial={reduceMotion ? false : "hidden"}
         animate="visible"
       >
-        <motion.p
-          variants={itemVariants}
-          className="mb-5 text-xs font-semibold uppercase tracking-[0.36em] text-[var(--urban-fog)]"
-        >
-          Portfólio
+        <motion.p variants={itemVariants} className="mb-5 text-xs font-semibold uppercase tracking-[0.36em] text-[var(--urban-fog)]">
+          {text.eyebrow}
         </motion.p>
-        <motion.h1
-          variants={itemVariants}
-          id="hero-title"
-          className="text-6xl font-semibold tracking-tight text-[var(--charcoal-noir)] sm:text-7xl lg:text-8xl"
-        >
+        <motion.h1 variants={itemVariants} id="hero-title" className="text-6xl font-semibold tracking-tight text-[var(--charcoal-noir)] sm:text-7xl lg:text-8xl">
           Lucas
         </motion.h1>
-        <motion.p
-          variants={itemVariants}
-          className="mt-4 text-2xl font-medium text-[var(--ironclad-grey)] sm:text-4xl"
-        >
-          Desenvolvedor Full Stack
+        <motion.p variants={itemVariants} className="mt-4 text-2xl font-medium text-[var(--ironclad-grey)] sm:text-4xl">
+          {text.role}
         </motion.p>
-        <motion.p
-          variants={itemVariants}
-          className="mt-8 max-w-2xl text-lg leading-8 text-[var(--ironclad-grey)]"
-        >
-          Construo aplicações web modernas, conectando interfaces bem desenhadas,
-          APIs, dados e regras de negócio com foco em clareza e manutenção.
+        <motion.p variants={itemVariants} className="mt-8 max-w-2xl text-lg leading-8 text-[var(--ironclad-grey)]">
+          {text.description}
         </motion.p>
         <motion.div variants={itemVariants} className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Button asChild size="lg">
             <a href="#projetos">
-              Ver projetos
+              {text.projects}
               <MoveRight aria-hidden="true" size={18} />
             </a>
           </Button>
@@ -86,10 +101,10 @@ export function HeroSection() {
             </a>
           </Button>
           <Button asChild size="lg" variant="ghost">
-            <Link href="/curriculo">
-              <FileText aria-hidden="true" size={18} />
-              Currículo
-            </Link>
+            <a href={text.resumeHref} download>
+              <Download aria-hidden="true" size={18} />
+              {text.resume}
+            </a>
           </Button>
         </motion.div>
       </motion.div>
@@ -111,7 +126,7 @@ export function HeroSection() {
         </motion.div>
         <Image
           src="/images/lucas-profile.webp"
-          alt="Lucas Araújo, desenvolvedor Full Stack"
+          alt={text.alt}
           fill
           priority
           className="object-cover object-center grayscale"
