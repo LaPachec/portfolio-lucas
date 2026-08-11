@@ -23,13 +23,13 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-[rgba(43,43,43,0.12)] bg-[rgba(224,224,224,0.86)] backdrop-blur">
       <nav
-        aria-label="Navegacao principal"
+        aria-label="Navegação principal"
         className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 sm:px-8"
       >
         <a
           href="#inicio"
           className="text-lg font-semibold tracking-tight text-[var(--charcoal-noir)] outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--charcoal-noir)]"
-          aria-label="Ir para o inicio"
+          aria-label="Ir para o início"
           onClick={closeMenu}
         >
           Lucas
@@ -47,7 +47,7 @@ export function Navbar() {
           ))}
         </div>
 
-        <Button asChild size="sm" variant="outline" className="hidden sm:inline-flex">
+        <Button asChild size="sm" variant="outline" className="hidden md:inline-flex">
           <a href="#contato">Contato</a>
         </Button>
 
