@@ -31,7 +31,6 @@ export const projects: Project[] = [
       "Aplicação desenvolvida para centralizar informações do casamento, facilitar a comunicação com convidados e oferecer uma experiência digital personalizada para o evento.",
     image: "/images/projects/casamento.webp",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
-    liveUrl: "https://casamento-giovanna-lucas-websapps.vercel.app",
     feedback: [],
     feedbackPending: true,
     details: {
