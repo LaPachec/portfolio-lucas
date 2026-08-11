@@ -1,0 +1,13 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" fill="#2B2B2B"/>
+  <rect x="80" y="88" width="800" height="984" fill="#E0E0E0"/>
+  <rect x="146" y="154" width="668" height="852" fill="#2B2B2B"/>
+  <path d="M215 850H712" stroke="#E0E0E0" stroke-width="2"/>
+  <path d="M215 308H712" stroke="#E0E0E0" stroke-width="2"/>
+  <circle cx="480" cy="520" r="182" fill="#B3B3B3"/>
+  <path d="M314 766C350 671 410 624 494 624C575 624 633 671 668 766H314Z" fill="#848484"/>
+  <path d="M480 206V954" stroke="#565656" stroke-width="22"/>
+  <path d="M214 850L746 308" stroke="#E0E0E0" stroke-width="2"/>
+  <text x="214" y="250" fill="#E0E0E0" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="10">FULL STACK</text>
+  <text x="214" y="926" fill="#E0E0E0" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="700">L</text>
+</svg>

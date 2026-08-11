@@ -1,14 +1,23 @@
+import { AboutSection } from "@/components/about-section";
+import { ContactSection } from "@/components/contact-section";
+import { Footer } from "@/components/footer";
+import { HeroSection } from "@/components/hero-section";
+import { Navbar } from "@/components/navbar";
+import { ProjectsSection } from "@/components/projects-section";
+import { TechnologiesSection } from "@/components/technologies-section";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center px-6">
-      <div className="max-w-3xl text-center">
-        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[var(--ironclad-grey)]">
-          Portfólio em construção
-        </p>
-        <h1 className="text-5xl font-semibold tracking-tight sm:text-7xl">
-          Lucas — Desenvolvedor Full Stack
-        </h1>
-      </div>
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <HeroSection />
+        <AboutSection />
+        <TechnologiesSection />
+        <ProjectsSection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </>
   );
 }
