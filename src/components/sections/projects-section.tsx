@@ -11,22 +11,50 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { projects } from "@/data/projects";
+import { projectsEn } from "@/data/projects-en";
 
-export function ProjectsSection() {
+type Locale = "pt" | "en";
+
+type ProjectsSectionProps = {
+  locale?: Locale;
+};
+
+export function ProjectsSection({ locale = "pt" }: ProjectsSectionProps) {
   const reduceMotion = useReducedMotion();
+  const projectList = locale === "pt" ? projects : projectsEn;
+  const text =
+    locale === "pt"
+      ? {
+          eyebrow: "Projetos",
+          title: "Projetos com contexto real.",
+          description:
+            "Trabalhos selecionados para mostrar landing pages, aplicações web e sistemas com regras de negócio mais específicas.",
+          viewProject: "Ver projeto",
+          feedbackBadge: "Feedback de cliente",
+          previewAlt: "Prévia visual do projeto",
+        }
+      : {
+          eyebrow: "Projects",
+          title: "Projects built around real use cases.",
+          description:
+            "Selected work covering landing pages, web applications and systems with more specific business rules.",
+          viewProject: "View project",
+          feedbackBadge: "Client feedback",
+          previewAlt: "Visual preview of project",
+        };
 
   return (
     <section id="projetos" aria-labelledby="projetos-title" className="border-t border-[rgba(43,43,43,0.12)]">
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
         <SectionHeading
           id="projetos-title"
-          eyebrow="Projetos"
-          title="Projetos com contexto real."
-          description="Trabalhos selecionados para mostrar landing pages, aplicações web e sistemas com regras de negócio mais específicas."
+          eyebrow={text.eyebrow}
+          title={text.title}
+          description={text.description}
         />
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {projects.map((project, index) => (
+          {projectList.map((project, index) => (
             <motion.div
               key={project.slug}
               initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.985 }}
@@ -59,7 +87,7 @@ export function ProjectsSection() {
                   >
                     <Image
                       src={project.image}
-                      alt={`Prévia visual do projeto ${project.title}`}
+                      alt={`${text.previewAlt} ${project.title}`}
                       fill
                       className="object-cover"
                       sizes="(min-width: 768px) 50vw, 100vw"
@@ -71,7 +99,7 @@ export function ProjectsSection() {
                     <div className="flex flex-wrap items-center gap-2">
                       <Badge className="w-fit">{project.category}</Badge>
                       {project.status ? <Badge className="w-fit">{project.status}</Badge> : null}
-                      {project.feedback !== undefined ? <Badge className="w-fit">Feedback de cliente</Badge> : null}
+                      {project.feedback !== undefined ? <Badge className="w-fit">{text.feedbackBadge}</Badge> : null}
                     </div>
                     <CardTitle>{project.title}</CardTitle>
                     <CardDescription>{project.description}</CardDescription>
@@ -85,19 +113,20 @@ export function ProjectsSection() {
                     {project.liveUrl ? (
                       <Button asChild size="sm">
                         <a href={project.liveUrl} target="_blank" rel="noreferrer">
-                          Ver projeto
+                          {text.viewProject}
                           <ExternalLink aria-hidden="true" size={16} />
                         </a>
                       </Button>
                     ) : null}
 
-                    <ProjectDetailsDialog project={project} />
+                    <ProjectDetailsDialog project={project} locale={locale} />
 
                     {project.feedback !== undefined ? (
                       <FeedbackDialog
                         projectTitle={project.title}
                         feedback={project.feedback}
                         pending={project.feedbackPending}
+                        locale={locale}
                       />
                     ) : null}
                   </div>
