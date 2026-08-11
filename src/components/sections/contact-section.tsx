@@ -91,7 +91,7 @@ export function ContactSection({ locale = "pt" }: ContactSectionProps) {
                   variant="outline"
                   className="w-full border-[var(--urban-fog)] !text-[var(--cloud-veil)] hover:border-[var(--cloud-veil)] hover:bg-[var(--cloud-veil)] hover:!text-[var(--charcoal-noir)] focus-visible:outline-[var(--cloud-veil)]"
                 >
-                  <a href={contact.href} target="_blank" rel="noreferrer">
+                  <a href={contact.href} target="_blank" rel="noopener noreferrer">
                     <Icon aria-hidden="true" size={18} />
                     {contact.label}
                   </a>
