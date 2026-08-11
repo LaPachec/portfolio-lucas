@@ -29,7 +29,7 @@ const copy = {
     description:
       "I build modern web applications, connecting thoughtful interfaces, APIs, data and business rules with a focus on clarity and maintainability.",
     projects: "View projects",
-    resume: "Download résumé",
+    resume: "Download resume",
     resumeHref: "/resume-lucas-araujo.pdf",
     alt: "Lucas Araújo, Full Stack Developer",
   },
