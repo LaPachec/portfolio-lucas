@@ -30,6 +30,65 @@ const navigation = {
   ],
 };
 
+function LanguageSelector({
+  locale,
+  mobile = false,
+  onLanguageChange,
+}: {
+  locale: Locale;
+  mobile?: boolean;
+  onLanguageChange: () => void;
+}) {
+  const sharedClass = mobile
+    ? "border px-4 py-2 text-xs font-semibold"
+    : "px-2.5 py-2 transition-colors";
+
+  return (
+    <div
+      className={
+        mobile
+          ? "mt-4 flex gap-2"
+          : "flex items-center border border-[var(--moonlit-silver)] text-[10px] font-semibold uppercase tracking-[0.14em]"
+      }
+      aria-label={locale === "pt" ? "Selecionar idioma" : "Select language"}
+    >
+      {locale === "pt" ? (
+        <span
+          className={`${sharedClass} ${mobile ? "border-[var(--charcoal-noir)]" : ""} bg-[var(--charcoal-noir)] text-[var(--cloud-veil)]`}
+          aria-current="page"
+        >
+          PT
+        </span>
+      ) : (
+        <Link
+          href="/"
+          onClick={onLanguageChange}
+          className={`${sharedClass} ${mobile ? "border-[var(--moonlit-silver)]" : "text-[var(--ironclad-grey)] hover:text-[var(--charcoal-noir)]"}`}
+        >
+          PT
+        </Link>
+      )}
+
+      {locale === "en" ? (
+        <span
+          className={`${sharedClass} ${mobile ? "border-[var(--charcoal-noir)]" : ""} bg-[var(--charcoal-noir)] text-[var(--cloud-veil)]`}
+          aria-current="page"
+        >
+          EN
+        </span>
+      ) : (
+        <Link
+          href="/en"
+          onClick={onLanguageChange}
+          className={`${sharedClass} ${mobile ? "border-[var(--moonlit-silver)]" : "text-[var(--ironclad-grey)] hover:text-[var(--charcoal-noir)]"}`}
+        >
+          EN
+        </Link>
+      )}
+    </div>
+  );
+}
+
 export function Navbar({ locale = "pt" }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
@@ -88,51 +147,6 @@ export function Navbar({ locale = "pt" }: NavbarProps) {
     setIsChangingLanguage(true);
   }
 
-  function LanguageSelector({ mobile = false }: { mobile?: boolean }) {
-    const sharedClass = mobile
-      ? "border px-4 py-2 text-xs font-semibold"
-      : "px-2.5 py-2 transition-colors";
-
-    return (
-      <div
-        className={
-          mobile
-            ? "mt-4 flex gap-2"
-            : "flex items-center border border-[var(--moonlit-silver)] text-[10px] font-semibold uppercase tracking-[0.14em]"
-        }
-        aria-label={locale === "pt" ? "Selecionar idioma" : "Select language"}
-      >
-        {locale === "pt" ? (
-          <span className={`${sharedClass} ${mobile ? "border-[var(--charcoal-noir)]" : ""} bg-[var(--charcoal-noir)] text-[var(--cloud-veil)]`} aria-current="page">
-            PT
-          </span>
-        ) : (
-          <Link
-            href="/"
-            onClick={startLanguageChange}
-            className={`${sharedClass} ${mobile ? "border-[var(--moonlit-silver)]" : "text-[var(--ironclad-grey)] hover:text-[var(--charcoal-noir)]"}`}
-          >
-            PT
-          </Link>
-        )}
-
-        {locale === "en" ? (
-          <span className={`${sharedClass} ${mobile ? "border-[var(--charcoal-noir)]" : ""} bg-[var(--charcoal-noir)] text-[var(--cloud-veil)]`} aria-current="page">
-            EN
-          </span>
-        ) : (
-          <Link
-            href="/en"
-            onClick={startLanguageChange}
-            className={`${sharedClass} ${mobile ? "border-[var(--moonlit-silver)]" : "text-[var(--ironclad-grey)] hover:text-[var(--charcoal-noir)]"}`}
-          >
-            EN
-          </Link>
-        )}
-      </div>
-    );
-  }
-
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-[rgba(43,43,43,0.12)] bg-[rgba(224,224,224,0.86)] backdrop-blur">
@@ -176,7 +190,7 @@ export function Navbar({ locale = "pt" }: NavbarProps) {
           </div>
 
           <div className="hidden items-center gap-3 md:flex">
-            <LanguageSelector />
+            <LanguageSelector locale={locale} onLanguageChange={startLanguageChange} />
 
             <Button asChild size="sm" variant="outline">
               <a href="#contato">{contactLabel}</a>
@@ -218,7 +232,7 @@ export function Navbar({ locale = "pt" }: NavbarProps) {
                 );
               })}
 
-              <LanguageSelector mobile />
+              <LanguageSelector locale={locale} mobile onLanguageChange={startLanguageChange} />
             </div>
           </div>
         ) : null}
