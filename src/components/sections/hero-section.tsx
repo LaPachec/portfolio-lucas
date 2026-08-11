@@ -24,8 +24,8 @@ export function HeroSection() {
           Desenvolvedor Full Stack
         </p>
         <p className="mt-8 max-w-2xl text-lg leading-8 text-[var(--ironclad-grey)]">
-          Construo interfaces, produtos digitais e sistemas web com atenção a clareza,
-          performance e manutenção.
+          Construo aplicações web modernas, conectando interfaces bem desenhadas,
+          APIs, dados e regras de negócio com foco em clareza e manutenção.
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Button asChild size="lg">
@@ -43,15 +43,20 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative min-h-[360px] overflow-hidden border border-[var(--moonlit-silver)] bg-[var(--charcoal-noir)] sm:min-h-[520px]">
+      <div className="relative min-h-[380px] overflow-hidden border border-[var(--moonlit-silver)] bg-[var(--charcoal-noir)] sm:min-h-[560px]">
+        <div className="absolute inset-x-8 top-8 z-10 flex justify-between text-xs font-semibold uppercase tracking-[0.3em] text-[var(--moonlit-silver)]">
+          <span>Full Stack</span>
+          <span className="[writing-mode:vertical-rl]">Lucas Araújo</span>
+        </div>
         <Image
-          src="/images/lucas-editorial.svg"
-          alt="Composição editorial abstrata do portfólio de Lucas"
+          src="/images/lucas-profile.webp"
+          alt="Lucas Araújo, desenvolvedor Full Stack"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-center grayscale"
           sizes="(min-width: 1024px) 42vw, 100vw"
         />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(43,43,43,0.08),rgba(43,43,43,0.34))]" />
       </div>
     </section>
   );

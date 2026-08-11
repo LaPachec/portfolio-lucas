@@ -1,10 +1,10 @@
-import { AboutSection } from "@/components/about-section";
-import { ContactSection } from "@/components/contact-section";
-import { Footer } from "@/components/footer";
-import { HeroSection } from "@/components/hero-section";
-import { Navbar } from "@/components/navbar";
-import { ProjectsSection } from "@/components/projects-section";
-import { TechnologiesSection } from "@/components/technologies-section";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { AboutSection } from "@/components/sections/about-section";
+import { ContactSection } from "@/components/sections/contact-section";
+import { HeroSection } from "@/components/sections/hero-section";
+import { ProjectsSection } from "@/components/sections/projects-section";
+import { TechnologiesSection } from "@/components/sections/technologies-section";
 
 export default function Home() {
   return (

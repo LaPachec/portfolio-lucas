@@ -1,9 +1,12 @@
-export type ProjectCategory = "Produto" | "Evento" | "Institucional" | "Financas";
-
 export type Project = {
+  slug: string;
   title: string;
-  category: ProjectCategory;
+  category: string;
   description: string;
   image: string;
   technologies: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  hasFeedback?: boolean;
+  status?: string;
 };

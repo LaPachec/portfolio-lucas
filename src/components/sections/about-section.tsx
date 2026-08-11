@@ -1,10 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { SectionHeading } from "@/components/section-heading";
+import { SectionHeading } from "@/components/shared/section-heading";
 
 const indicators = [
-  { value: "Full Stack", label: "Atuação em front-end, back-end e integração" },
-  { value: "UI sólida", label: "Interfaces responsivas, acessíveis e objetivas" },
-  { value: "Entrega", label: "Foco em produto funcional, claro e evolutivo" },
+  { value: "Full Stack", label: "Atuação conectando interface, API, dados e regra de negócio" },
+  { value: "UI sólida", label: "Construção responsiva com atenção a clareza e acessibilidade" },
+  { value: "Entrega", label: "Organização técnica para evoluir sem perder controle" },
 ];
 
 export function AboutSection() {
@@ -14,15 +14,15 @@ export function AboutSection() {
         <SectionHeading
           id="sobre-title"
           eyebrow="Sobre"
-          title="Código com estrutura, interface com intenção."
-          description="Lucas desenvolve soluções digitais combinando visão de produto, organização técnica e cuidado visual."
+          title="Desenvolvimento web com visão de produto e base técnica."
+          description="Sou desenvolvedor Full Stack com foco na construção de aplicações web modernas, atuando desde a criação de interfaces até APIs, bancos de dados e regras de negócio."
         />
 
         <div>
           <p className="text-xl leading-9 text-[var(--charcoal-noir)]">
-            A proposta deste portfólio é apresentar projetos com uma leitura direta:
-            problemas resolvidos, tecnologias utilizadas e decisões que tornam cada
-            entrega mais estável, clara e fácil de manter.
+            Busco desenvolver soluções organizadas, funcionais e fáceis de evoluir,
+            equilibrando experiência do usuário, estrutura de código e decisões
+            técnicas proporcionais ao problema.
           </p>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3">

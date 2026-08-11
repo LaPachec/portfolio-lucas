@@ -1,19 +1,23 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { SectionHeading } from "@/components/section-heading";
+import { SectionHeading } from "@/components/shared/section-heading";
 
 const technologyGroups = [
   {
     title: "Front-end",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+    items: ["React", "Next.js", "Vite", "TypeScript", "Tailwind CSS", "Ant Design"],
   },
   {
     title: "Back-end",
-    items: ["Node.js", "APIs REST", "Autenticação", "Validação", "Banco de dados"],
+    items: ["Node.js", "Fastify", "Express", "Prisma", "JWT"],
   },
   {
-    title: "Ferramentas / Infraestrutura",
-    items: ["Git", "GitHub", "Deploy", "ESLint", "Ambiente local"],
+    title: "Banco de dados / Infraestrutura",
+    items: ["SQLite", "PostgreSQL", "Docker Compose", "Vercel"],
+  },
+  {
+    title: "Ferramentas",
+    items: ["Git", "GitHub", "ESLint", "Jest", "Supertest"],
   },
 ];
 
@@ -28,11 +32,11 @@ export function TechnologiesSection() {
         <SectionHeading
           id="tecnologias-title"
           eyebrow="Tecnologias"
-          title="Stack objetiva para construir, manter e evoluir."
-          description="A base técnica prioriza produtividade, tipagem, componentização e uma experiência consistente em diferentes telas."
+          title="Tecnologias usadas em projetos reais."
+          description="Uma seleção enxuta das ferramentas identificadas nos projetos analisados, separando interface, servidor, dados e suporte ao desenvolvimento."
         />
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {technologyGroups.map((group) => (
             <Card key={group.title} className="p-6">
               <CardHeader>

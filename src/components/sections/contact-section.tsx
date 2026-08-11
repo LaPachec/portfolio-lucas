@@ -1,7 +1,7 @@
-import { GitBranch, Linkedin } from "lucide-react";
+import { GitBranch, Link2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { SectionHeading } from "@/components/section-heading";
+import { SectionHeading } from "@/components/shared/section-heading";
 
 const contacts = [
   {
@@ -12,7 +12,7 @@ const contacts = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/lucas-araujo-3007b9354/",
-    icon: Linkedin,
+    icon: Link2,
   },
 ];
 
