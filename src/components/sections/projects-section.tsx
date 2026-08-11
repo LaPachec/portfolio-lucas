@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ExternalLink } from "lucide-react";
 
+import { FeedbackDialog } from "@/components/shared/feedback-dialog";
+import { SectionHeading } from "@/components/shared/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { SectionHeading } from "@/components/shared/section-heading";
 import { projects } from "@/data/projects";
 
 export function ProjectsSection() {
@@ -35,7 +37,7 @@ export function ProjectsSection() {
                   <div className="flex flex-wrap items-center gap-2">
                     <Badge className="w-fit">{project.category}</Badge>
                     {project.status ? <Badge className="w-fit">{project.status}</Badge> : null}
-                    {project.hasFeedback ? <Badge className="w-fit">Feedback de cliente</Badge> : null}
+                    {project.feedback !== undefined ? <Badge className="w-fit">Feedback de cliente</Badge> : null}
                   </div>
                   <CardTitle>{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
@@ -45,7 +47,7 @@ export function ProjectsSection() {
                     <Badge key={technology}>{technology}</Badge>
                   ))}
                 </CardContent>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-8 flex flex-wrap gap-3">
                   {project.liveUrl ? (
                     <Button asChild size="sm">
                       <a href={project.liveUrl} target="_blank" rel="noreferrer">
@@ -54,9 +56,21 @@ export function ProjectsSection() {
                       </a>
                     </Button>
                   ) : null}
-                  <Button size="sm" variant="outline" disabled title="Página de detalhes ainda não criada">
-                    Ver detalhes
+
+                  <Button asChild size="sm" variant="outline">
+                    <Link href={`/projetos/${project.slug}`}>
+                      Ver detalhes
+                      <ArrowRight aria-hidden="true" size={16} />
+                    </Link>
                   </Button>
+
+                  {project.feedback !== undefined ? (
+                    <FeedbackDialog
+                      projectTitle={project.title}
+                      feedback={project.feedback}
+                      pending={project.feedbackPending}
+                    />
+                  ) : null}
                 </div>
               </div>
             </Card>
