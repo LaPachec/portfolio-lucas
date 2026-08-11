@@ -1,4 +1,7 @@
+"use client";
+
 import { GitBranch, Link2 } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -17,6 +20,8 @@ const contacts = [
 ];
 
 export function ContactSection() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section
       id="contato"
@@ -24,33 +29,59 @@ export function ContactSection() {
       className="border-t border-[rgba(43,43,43,0.12)] bg-[var(--charcoal-noir)] text-[var(--cloud-veil)]"
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-end lg:py-24">
-        <SectionHeading
-          id="contato-title"
-          inverted
-          eyebrow="Contato"
-          title="Vamos transformar uma ideia em interface real."
-          description="Entre em contato para conversar sobre projetos, oportunidades ou colaboração técnica."
-        />
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, x: -22 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <SectionHeading
+            id="contato-title"
+            inverted
+            eyebrow="Contato"
+            title="Vamos transformar uma ideia em interface real."
+            description="Entre em contato para conversar sobre projetos, oportunidades ou colaboração técnica."
+          />
+        </motion.div>
 
-        <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-          {contacts.map((contact) => {
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.08, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col gap-3 sm:flex-row lg:flex-col"
+        >
+          {contacts.map((contact, index) => {
             const Icon = contact.icon;
 
             return (
-              <Button
+              <motion.div
                 key={contact.label}
-                asChild
-                variant="outline"
-                className="border-[var(--urban-fog)] !text-[var(--cloud-veil)] hover:border-[var(--cloud-veil)] hover:bg-[var(--cloud-veil)] hover:!text-[var(--charcoal-noir)] focus-visible:outline-[var(--cloud-veil)]"
+                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={reduceMotion ? undefined : { x: 4 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 22,
+                  delay: reduceMotion ? 0 : 0.12 + index * 0.07,
+                }}
               >
-                <a href={contact.href} target="_blank" rel="noreferrer">
-                  <Icon aria-hidden="true" size={18} />
-                  {contact.label}
-                </a>
-              </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full border-[var(--urban-fog)] !text-[var(--cloud-veil)] hover:border-[var(--cloud-veil)] hover:bg-[var(--cloud-veil)] hover:!text-[var(--charcoal-noir)] focus-visible:outline-[var(--cloud-veil)]"
+                >
+                  <a href={contact.href} target="_blank" rel="noreferrer">
+                    <Icon aria-hidden="true" size={18} />
+                    {contact.label}
+                  </a>
+                </Button>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
