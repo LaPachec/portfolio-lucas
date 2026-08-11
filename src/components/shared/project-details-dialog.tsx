@@ -11,18 +11,25 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types/project";
 
+type Locale = "pt" | "en";
+
 type ProjectDetailsDialogProps = {
   project: Project;
+  locale?: Locale;
 };
 
-export function ProjectDetailsDialog({ project }: ProjectDetailsDialogProps) {
+export function ProjectDetailsDialog({ project, locale = "pt" }: ProjectDetailsDialogProps) {
   const [open, setOpen] = React.useState(false);
   const reduceMotion = useReducedMotion();
+  const text =
+    locale === "pt"
+      ? { trigger: "Ver detalhes", highlights: "Destaques", project: "Ver projeto", close: "Fechar detalhes do projeto" }
+      : { trigger: "View details", highlights: "Highlights", project: "View project", close: "Close project details" };
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger className={cn(buttonVariants({ variant: "outline", size: "sm" }), "cursor-pointer")}>
-        Ver detalhes
+        {text.trigger}
       </Dialog.Trigger>
 
       <AnimatePresence>
@@ -40,59 +47,59 @@ export function ProjectDetailsDialog({ project }: ProjectDetailsDialogProps) {
               className="fixed inset-0 z-[70] bg-[rgba(43,43,43,0.76)] backdrop-blur-sm"
             />
 
-            <Dialog.Viewport className="fixed inset-0 z-[80] grid overflow-y-auto px-4 py-8 sm:px-8 sm:py-10">
+            <Dialog.Viewport className="fixed inset-0 z-[80] grid overflow-y-auto px-5 py-10 sm:px-10 sm:py-14">
               <Dialog.Popup
                 render={
                   <motion.div
-                    initial={reduceMotion ? false : { opacity: 0, y: 26, scale: 0.97 }}
+                    initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 18, scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 210, damping: 24, mass: 0.8 }}
+                    exit={{ opacity: 0, y: 16, scale: 0.965 }}
+                    transition={{ type: "spring", stiffness: 205, damping: 25, mass: 0.82 }}
                   />
                 }
-                className="relative m-auto w-full max-w-5xl overflow-hidden rounded-3xl border border-[var(--moonlit-silver)] bg-[var(--cloud-veil)] text-[var(--charcoal-noir)] shadow-2xl"
+                className="relative m-auto w-full max-w-4xl overflow-hidden rounded-3xl border border-[var(--moonlit-silver)] bg-[var(--cloud-veil)] text-[var(--charcoal-noir)] shadow-2xl"
               >
                 <Dialog.Close
                   className="absolute right-4 top-4 z-20 inline-flex size-10 cursor-pointer items-center justify-center rounded-full border border-[var(--moonlit-silver)] bg-[var(--cloud-veil)] text-[var(--charcoal-noir)] transition-colors hover:border-[var(--charcoal-noir)] hover:bg-[var(--charcoal-noir)] hover:text-[var(--cloud-veil)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--charcoal-noir)]"
-                  aria-label="Fechar detalhes do projeto"
+                  aria-label={text.close}
                 >
                   <X aria-hidden="true" size={18} />
                 </Dialog.Close>
 
-                <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-                  <div className="relative min-h-[280px] bg-[var(--charcoal-noir)] sm:min-h-[380px] lg:min-h-full">
+                <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+                  <div className="relative min-h-[240px] bg-[var(--charcoal-noir)] sm:min-h-[330px] lg:min-h-full">
                     <Image
                       src={project.image}
-                      alt={`Interface do projeto ${project.title}`}
+                      alt={`${locale === "pt" ? "Interface do projeto" : "Project interface"} ${project.title}`}
                       fill
                       className="object-cover"
-                      sizes="(min-width: 1024px) 45vw, 100vw"
+                      sizes="(min-width: 1024px) 40vw, 100vw"
                     />
                   </div>
 
-                  <div className="p-6 sm:p-8 lg:p-10">
+                  <div className="p-6 sm:p-7 lg:p-8">
                     <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--urban-fog)]">
                       {project.category}
                     </p>
-                    <Dialog.Title className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                    <Dialog.Title className="mt-3 text-3xl font-semibold tracking-tight sm:text-[2rem]">
                       {project.title}
                     </Dialog.Title>
-                    <Dialog.Description className="mt-5 text-base leading-7 text-[var(--ironclad-grey)] sm:text-lg sm:leading-8">
+                    <Dialog.Description className="mt-4 text-base leading-7 text-[var(--ironclad-grey)]">
                       {project.details.overview}
                     </Dialog.Description>
 
-                    <div className="mt-7 flex flex-wrap gap-2">
+                    <div className="mt-6 flex flex-wrap gap-2">
                       {project.technologies.map((technology) => (
                         <Badge key={technology}>{technology}</Badge>
                       ))}
                       {project.status ? <Badge>{project.status}</Badge> : null}
                     </div>
 
-                    <div className="mt-8 border-t border-[rgba(43,43,43,0.14)] pt-7">
+                    <div className="mt-7 border-t border-[rgba(43,43,43,0.14)] pt-6">
                       <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--urban-fog)]">
-                        Destaques
+                        {text.highlights}
                       </p>
-                      <ul className="mt-4 space-y-3">
+                      <ul className="mt-4 space-y-2.5">
                         {project.details.highlights.map((highlight, index) => (
                           <li key={highlight} className="grid grid-cols-[auto_1fr] gap-3 text-sm leading-6 text-[var(--ironclad-grey)]">
                             <span className="font-semibold text-[var(--charcoal-noir)]">
@@ -109,9 +116,9 @@ export function ProjectDetailsDialog({ project }: ProjectDetailsDialogProps) {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className={cn(buttonVariants({ size: "sm" }), "mt-8 inline-flex")}
+                        className={cn(buttonVariants({ size: "sm" }), "mt-7 inline-flex")}
                       >
-                        Ver projeto
+                        {text.project}
                         <ExternalLink aria-hidden="true" size={16} />
                       </a>
                     ) : null}
