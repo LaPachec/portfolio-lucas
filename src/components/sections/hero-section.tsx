@@ -20,7 +20,7 @@ const copy = {
       "Construo aplicações web modernas, conectando interfaces bem desenhadas, APIs, dados e regras de negócio com foco em clareza e manutenção.",
     projects: "Ver projetos",
     resume: "Baixar currículo",
-    resumeHref: "/curriculo-lucas-araujo.pdf",
+    resumeHref: "/api/resume?lang=pt",
     alt: "Lucas Araújo, desenvolvedor Full Stack",
   },
   en: {
@@ -30,7 +30,7 @@ const copy = {
       "I build modern web applications, connecting thoughtful interfaces, APIs, data and business rules with a focus on clarity and maintainability.",
     projects: "View projects",
     resume: "Download resume",
-    resumeHref: "/resume-lucas-araujo.pdf",
+    resumeHref: "/api/resume?lang=en",
     alt: "Lucas Araújo, Full Stack Developer",
   },
 };
@@ -101,7 +101,7 @@ export function HeroSection({ locale = "pt" }: HeroSectionProps) {
             </a>
           </Button>
           <Button asChild size="lg" variant="ghost">
-            <a href={text.resumeHref} download>
+            <a href={text.resumeHref}>
               <Download aria-hidden="true" size={18} />
               {text.resume}
             </a>
