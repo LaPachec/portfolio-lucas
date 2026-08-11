@@ -1,25 +1,76 @@
-import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SectionHeading } from "@/components/shared/section-heading";
 
 const technologyGroups = [
   {
     title: "Front-end",
-    items: ["React", "Next.js", "Vite", "TypeScript", "Tailwind CSS", "Ant Design"],
+    items: [
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "nextdotjs" },
+      { name: "Vite", icon: "vite" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
+      { name: "Ant Design", icon: "antdesign" },
+    ],
   },
   {
     title: "Back-end",
-    items: ["Node.js", "Fastify", "Express", "Prisma", "JWT"],
+    items: [
+      { name: "Node.js", icon: "nodedotjs" },
+      { name: "Fastify", icon: "fastify" },
+      { name: "Express", icon: "express" },
+      { name: "Prisma", icon: "prisma" },
+      { name: "JWT" },
+    ],
   },
   {
     title: "Banco de dados / Infraestrutura",
-    items: ["SQLite", "PostgreSQL", "Docker Compose", "Vercel"],
+    items: [
+      { name: "SQLite", icon: "sqlite" },
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "Docker Compose", icon: "docker" },
+      { name: "Vercel", icon: "vercel" },
+    ],
   },
   {
     title: "Ferramentas",
-    items: ["Git", "GitHub", "ESLint", "Jest", "Supertest"],
+    items: [
+      { name: "Git", icon: "git" },
+      { name: "GitHub", icon: "github" },
+      { name: "ESLint", icon: "eslint" },
+      { name: "Jest", icon: "jest" },
+      { name: "Supertest" },
+    ],
   },
 ];
+
+function TechnologyIcon({ name, icon }: { name: string; icon?: string }) {
+  if (!icon) {
+    return (
+      <span
+        aria-hidden="true"
+        className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[var(--moonlit-silver)] text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--ironclad-grey)]"
+      >
+        {name.slice(0, 2)}
+      </span>
+    );
+  }
+
+  return (
+    <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[var(--moonlit-silver)] bg-white/35">
+      <Image
+        src={`https://cdn.simpleicons.org/${icon}/2B2B2B`}
+        alt=""
+        width={22}
+        height={22}
+        aria-hidden="true"
+        className="size-[22px] object-contain"
+      />
+    </span>
+  );
+}
 
 export function TechnologiesSection() {
   return (
@@ -42,9 +93,17 @@ export function TechnologiesSection() {
               <CardHeader>
                 <CardTitle>{group.title}</CardTitle>
               </CardHeader>
-              <CardContent className="mt-7 flex flex-wrap gap-2">
+              <CardContent className="mt-7 space-y-3">
                 {group.items.map((item) => (
-                  <Badge key={item}>{item}</Badge>
+                  <div
+                    key={item.name}
+                    className="flex items-center gap-3 border-b border-[rgba(43,43,43,0.08)] pb-3 last:border-b-0 last:pb-0"
+                  >
+                    <TechnologyIcon name={item.name} icon={item.icon} />
+                    <span className="text-sm font-semibold text-[var(--charcoal-noir)]">
+                      {item.name}
+                    </span>
+                  </div>
                 ))}
               </CardContent>
             </Card>
