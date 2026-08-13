@@ -10,8 +10,13 @@ export const projectsEn: Project[] = [
     image: "/images/projects/astria.webp",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     liveUrl: "https://astriags.com.br",
-    feedback: [],
-    feedbackPending: true,
+    feedback: [
+      {
+        comment:
+          "Working with him was very smooth. He addressed all of my requests so the result aligned with my goals. In the end, I loved the outcome.",
+      },
+    ],
+    feedbackPending: false,
     details: {
       overview:
         "Commercial project created to present Astria's positioning, services and portfolio through a responsive, direct and conversion-oriented experience.",
@@ -31,8 +36,13 @@ export const projectsEn: Project[] = [
       "Application built to centralize wedding information, simplify communication with guests and provide a personalized digital experience for the event.",
     image: "/images/projects/casamento.webp",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
-    feedback: [],
-    feedbackPending: true,
+    feedback: [
+      {
+        comment:
+          "The system was very simple and easy to use, met the requirements, and he was extremely attentive throughout every conversation.",
+      },
+    ],
+    feedbackPending: false,
     details: {
       overview:
         "Web application created to gather important event information in one place and make the guest experience simpler and more personalized.",
